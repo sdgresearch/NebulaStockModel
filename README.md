@@ -7,7 +7,7 @@ This repository contains scripts for generating the NEBULA dataset, a postcode-l
 
 - A conference paper introducing this dataset - [NeurIPS 2024 Climate Change AI](https://s3.us-east-1.amazonaws.com/climate-change-ai/papers/neurips2024/23/paper.pdf) 
 - Work that uses this dataset [BuildSys 2024 Benchmarking paper](https://dl.acm.org/doi/proceedings/10.1145/3671127?tocHeading=heading1)
-- Data Descriptor Paper - coming soon. 
+- Data Descriptor Paper [Pre-Print](https://arxiv.org/abs/2501.09407). 
 
 
 ![NEBULA Pipeline](./images/nebula_pipeline.svg)
@@ -35,7 +35,7 @@ conda install conda-forge::libgdal==3.6.4
 - Building Stock Data (Verisk)
 - Postcode Shapefiles (Edina)
 
-Conversations with OS indicated postcodes shapefiles are open access data but we reccomned user download them themselves from accredited sources. 
+Conversations with OS indicated postcodes shapefiles are open access data but we reccomend user download them themselves from accredited sources. 
 
 #### Provided Data (Open Government License)
 Place these files in the `input_data_sources` directory, or download from our Zip:
@@ -46,7 +46,7 @@ Place these files in the `input_data_sources` directory, or download from our Zi
 4. Census 2021 Statistics
 5. Census 2021 Postcode-Output Area-Region Mappings
 6. Output Areas 2011-2021 Mapping
-7. Postcode Areas: area of postcodes (dervied from postcode shapefiles)
+7. Postcode Areas: area of postcodes (derived from postcode shapefiles)
 8. Climate Data (HAD-UK Monthly Temperature, 2022)
 
 ## Directory Structure
@@ -120,7 +120,7 @@ The processed dataset is available under an open licence - please see the accomp
    ```
 4. Update slurm scripts nebula_job.sh and submit_nebula.sh to run fuel, age and typology calculation 
 5. Submit multiple jobs using nebula_job.sh 
-6. When all themes finished calculting, update main.py to just call the post process section 
+6. When all themes finished calculating, update main.py to just call the post process section 
 
 
 ## Output Dataset
@@ -132,9 +132,9 @@ The pipeline generates postcode-level statistics including:
 - Building statistics and averages
 
 ## Notes
-- We batch up the process of converting the building stock dataset into postcode attributes (themes: building stock, typoloy and age). This enables better logging and multi threading. Current set up is to process each region seperartely and split into batches of 10k postcodes. 
-- We provide two generation routes: local and HPC genreation. For one region: running locally takes an estimated 48 hours. Multi threading can speed this up.
-- When running on HPC, we submit each type / region / batch as a seperate job. Using a 8GB (3 CPUS) job, each 10k batch takes approx. 1.5 hours for fuel and 20 minutes for age/tpye. Total run time: (152 * 1.5) + (2 * 152 * .3)  = 319 hours. 
+- We batch up the process of converting the building stock dataset into postcode attributes (themes: building stock, typology and age). This enables better logging and multi threading. Current set up is to process each region separately and split into batches of 10k postcodes. 
+- We provide two generation routes: local and HPC generation. For one region: running locally takes an estimated 48 hours. Multi threading can speed this up.
+- When running on HPC, we submit each type / region / batch as a separate job. Using a 8GB (3 CPUS) job, each 10k batch takes approx. 1.5 hours for fuel and 20 minutes for age/type. Total run time: (152 * 1.5) + (2 * 152 * .3)  = 319 hours. 
 - Check overlapping_pcs.txt for postcode boundary issues
 - See global_avs/ for reference statistics
 - Intermediate files can be safely deleted after final dataset generation
@@ -172,7 +172,7 @@ conda install libtiff==4.5.0
 2. ONS ONSUD UPRN to Postcode Mapping (2022)
 3. Global Averages for building floor count (derivation script is provided)
 4. Census 2021 Statistics files (downloaded in April 2024)
-5. Mapping from Postocdes to Output areas and regions (Census 2021)
+5. Mapping from Postcodes to Output areas and regions (Census 2021)
 6. Mapping from output areas 2011 to Output Areas 2021 (used for Rural/Urban 2011 classification)
 7. Postcode areas: these were derived from ONS postcode shapefiles using the script generate_pc_area.py. You can replace with own. 
 8. Climate data: Monthly temperature data from HAD-UK, Downloaded from CEDA, (2022)
